@@ -2,7 +2,7 @@ package com.travelzilla.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +40,7 @@ public class TravelsController {
 	
 //	Register New traveler along with new bus If travels want.
 	@PostMapping("/Register")
-	public ResponseEntity<Travels> registerNewTravelsHandler(@Valid @RequestBody Travels travel ) throws TravelsException, BusException, SessionException{
+	public ResponseEntity<Travels> registerNewTravelsHandler( @RequestBody Travels travel ) throws TravelsException, BusException, SessionException{
 
 //			Main Function calling
 			Travels travels1=cont.registerNewTravels(travel);
@@ -52,7 +52,8 @@ public class TravelsController {
 	
 //	Add new Bus With existing Travels.
 	@PostMapping("/AddNewBus/{Travel_id}")
-	public ResponseEntity<Travels> registerNewBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@RequestBody Bus bus ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
+	public ResponseEntity<Travels> registerNewBusInTravelsHandler( @PathVariable("Travel_id") Integer tid,
+			@RequestBody Bus bus ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
 		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==tid)) {
@@ -70,7 +71,7 @@ public class TravelsController {
 	
 //	Register old bus with other travels.
 	@PutMapping("/AddOldBus/{Travel_id}/{Bus_Id}")
-	public ResponseEntity<Travels> registerOldBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
+	public ResponseEntity<Travels> registerOldBusInTravelsHandler(@PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
 		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==tid) ) {
@@ -88,7 +89,7 @@ public class TravelsController {
 	
 //  Search travels with their IDs.
 	@GetMapping("/GetById/{Travel_id}")
-	public ResponseEntity<Travels> getTravelsByIdHandler(@Valid  @PathVariable("Travel_id") Integer travelsID ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
+	public ResponseEntity<Travels> getTravelsByIdHandler(@PathVariable("Travel_id") Integer travelsID ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
 		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==travelsID)) {
@@ -106,7 +107,7 @@ public class TravelsController {
 	
 //	Get all Travels from database.
 	@GetMapping("/GetAll")
-	public ResponseEntity<List<Travels>> getAllTravelsHandler(@Valid  @RequestParam("sessionKey") String key) throws TravelsException, SessionException{
+	public ResponseEntity<List<Travels>> getAllTravelsHandler(@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
 		if(session.getUserType()==UserType.ADMIN) {

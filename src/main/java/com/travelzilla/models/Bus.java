@@ -10,30 +10,34 @@ import com.fasterxml.jackson.annotation.*;
 
 
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Max;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 
 @Entity
 public class Bus {
 
-	private static final @NotNull(message = "Bus capacity Cannot Be Null!") @Max(100) @Min(50) Integer value = null;
+	private static final 
+	//@NotNull(message = "Bus capacity Cannot Be Null!") 
+	//@Max(100)
+	//@Min(50) 
+	Integer value = null;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer busId ;
-	@NotNull(message = "Bus Type Cannot Be Null!")
+	//@NotNull(message = "Bus Type Cannot Be Null!")
 	private BusType busType;
-	@NotNull(message = "Bus Number Cannot Be Null!")
+	//@NotNull(message = "Bus Number Cannot Be Null!")
 	private String busNumber;
-	@NotNull(message = "Bus capacity Cannot Be Null!")
+	//@NotNull(message = "Bus capacity Cannot Be Null!")
 	
-	@Max(100)
+	//@Max(100)
 	//@Min(50)
 	private Integer capacity;
-	@NotNull(message = "availabe Seat Type Cannot Be Null!")
+	//@NotNull(message = "availabe Seat Type Cannot Be Null!")
 	
-	@Max(100)
+	//@Max(100)
 	private Integer availabeSeat;
 	
 	@JsonIgnore

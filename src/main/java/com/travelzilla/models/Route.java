@@ -19,18 +19,18 @@ public class Route {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer routeId;
-	@NotNull(message = "Route From Cannot Be Null!")
+	//@NotNull(message = "Route From Cannot Be Null!")
 	private String routeFrom;
-	@NotNull(message = "Route To Cannot Be Null!")
+	//@NotNull(message = "Route To Cannot Be Null!")
 	private String routeTo;
 	
 	//Use BusTiming class for neat and clean code.
-	@NotNull(message = "Time Cannot Be Null!")
+	//@NotNull(message = "Time Cannot Be Null!")
 	@Embedded
 	private BusTiming time;
-	@NotNull(message = "pickupPoint Cannot Be Null!")
+	//@NotNull(message = "pickupPoint Cannot Be Null!")
 	private String pickupPoint;
-	@NotNull(message = "Fare Cannot Be Null!")
+	//@NotNull(message = "Fare Cannot Be Null!")
 	private double fare;
 	
 

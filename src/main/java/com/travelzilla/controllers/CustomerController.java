@@ -29,7 +29,7 @@ import com.travelzilla.services.CustomerServices;
 import com.travelzilla.services.SessionServices;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping
 public class CustomerController {
 
 	
@@ -39,14 +39,14 @@ public class CustomerController {
 	@Autowired
 	private SessionServices sServices;
 	
-	@PostMapping("/addcustomer")
+	@PostMapping("/customers/addcustomer")
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) throws CustomerException{
 		
 		return new ResponseEntity<Customer>(customerServices.addCustomer(customer),HttpStatus.ACCEPTED);
 		
 	}
 	
-	@DeleteMapping("/deletecustomer/{cid}")
+	@DeleteMapping("/customers/deletecustomer/{cid}")
 	public ResponseEntity<Customer> deleteCustomerbyIdHandler(@PathVariable Integer customerId, @RequestParam("sessionKey")String sessionKey) throws CustomerException, SessionException{
 		Session session = sServices.getASessionByKey(sessionKey);
 		if(session.getUserId()==customerId && session.getUserType()==UserType.CUSTOMER) {
@@ -56,7 +56,7 @@ public class CustomerController {
 		throw new CustomerException("Please login with the correct credentials");
 	}
 	
-	@PutMapping("/updatecustomer")
+	@PutMapping("/customers/updatecustomer")
 	public ResponseEntity<Customer> updateCustomerHandler(@RequestBody Customer customer, @RequestParam("sessionKey")String sessionKey) throws CustomerException, SessionException{
 		Session session = sServices.getASessionByKey(sessionKey);
 		if(session.getUserId()==customer.getCustomerId() && session.getUserType()==UserType.CUSTOMER) {
@@ -67,7 +67,7 @@ public class CustomerController {
 		throw new CustomerException("Please login with the correct credentials");
 	}
 	
-	@GetMapping("/viewcustomer/{id}")
+	@GetMapping("/customers/viewcustomer/{id}")
 	public ResponseEntity<Customer> viewCustomer(@PathVariable("id") Integer id, @RequestParam("sessionKey")String sessionKey) throws CustomerException, SessionException{
 		Session session = sServices.getASessionByKey(sessionKey);
 		if(session.getUserId()== id && session.getUserType()==UserType.CUSTOMER) {
@@ -78,7 +78,7 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/viewallcustomers")
+	@GetMapping("/customers/viewallcustomers")
 	public ResponseEntity<List<Customer>> viewAllCustomers(@RequestParam("sessionKey")String sessionKey) throws CustomerException, SessionException{
 		Session session = sServices.getASessionByKey(sessionKey);
 		if(session.getUserType() == UserType.ADMIN) {

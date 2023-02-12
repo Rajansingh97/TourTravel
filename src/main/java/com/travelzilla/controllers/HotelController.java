@@ -27,7 +27,7 @@ import com.travelzilla.services.HotelServicesImpl;
 import com.travelzilla.services.SessionServices;
 
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping
 public class HotelController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class HotelController {
 	@Autowired
 	SessionServices sessionService;
 
-	@PostMapping("/addHotel")
+	@PostMapping("/hotel/addHotel")
 	public ResponseEntity<Hotel> addHotel(@Valid @RequestBody Hotel pack, @RequestParam("sessionKey") String sessionKey)
 			throws AdminException, SessionException {
 		Session session = sessionService.getASessionByKey(sessionKey);
@@ -46,7 +46,7 @@ public class HotelController {
 		throw new AdminException("Please login with the correct credentials");
 	}
 
-	@DeleteMapping("/deleteHotel/{id}")
+	@DeleteMapping("/hotel/deleteHotel/{id}")
 	public ResponseEntity<Hotel> deleteHotel(@PathVariable("id") Integer id,
 			@RequestParam("sessionKey") String sessionKey) throws HotelException, AdminException, SessionException {
 		Session session = sessionService.getASessionByKey(sessionKey);
@@ -56,7 +56,7 @@ public class HotelController {
 		throw new AdminException("Please login with the correct credentials");
 	}
 
-	@GetMapping("/searchHotelById/{id}")
+	@GetMapping("/hotel/searchHotelById/{id}")
 	public ResponseEntity<Hotel> searchHotelById(@PathVariable("id") Integer id,
 			@RequestParam("sessionKey") String sessionKey) throws HotelException, CustomerException, SessionException {
 		Session session = sessionService.getASessionByKey(sessionKey);
@@ -67,7 +67,7 @@ public class HotelController {
 		throw new CustomerException("Please login with the correct credentials");
 	}
 
-	@GetMapping("/viewAllHotels")
+	@GetMapping("/hotel/viewAllHotels")
 	public ResponseEntity<List<Hotel>> viewAllHotels(@RequestParam("sessionKey") String sessionKey)
 			throws SessionException, AdminException {
 

@@ -10,9 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,9 +21,9 @@ public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookingId;
-	@NotBlank(message = "description cannot be null")
+	//@NotBlank(message = "description cannot be null")
 	private String description;
-	@NotBlank(message = "bookingTitle cannot be null")
+	//@NotBlank(message = "bookingTitle cannot be null")
 	private String bookingTitle;
 	
 	private LocalDateTime bookingDate;
@@ -33,26 +33,26 @@ public class Booking {
 
 	private BookingStatus bookingStatus = BookingStatus.PAYMENT_PENDING;
 	
-	@NotNull(message = "Number Of Person Cannot Be Null")
-	@Min(value = 1, message = "Number Of Person Should Be Atleast 1")
+	//@NotNull(message = "Number Of Person Cannot Be Null")
+	//@Min(value = 1, message = "Number Of Person Should Be Atleast 1")
 	private Integer noOfPersons;	
 
 
 	@ManyToOne
 	@JoinColumn(name = "customerId" )
-	@NotNull(message = "customer cannot be null")
+	//@NotNull(message = "customer cannot be null")
 	@JsonIgnore
 	private Customer customer;
 
 	@ManyToOne
 	@JoinColumn(name = "packageId")
-	@NotNull(message = "package cannot be null")
+	//@NotNull(message = "package cannot be null")
 	@JsonIgnore
 	private Packages packages;
 
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@NotNull
+	//@NotNull
 	@JsonIgnore
 	private TicketDetails ticket;
 
@@ -64,12 +64,20 @@ public class Booking {
 	
 	
 	
-	public Booking(int bookingId, @NotBlank(message = "description cannot be null") String description,
-			@NotBlank(message = "bookingTitle cannot be null") String bookingTitle, LocalDateTime bookingDate,
+	public Booking(int bookingId, //@NotBlank(message = "description cannot be null") 
+			String description,
+			//@NotBlank(message = "bookingTitle cannot be null")
+			String bookingTitle, LocalDateTime bookingDate,
 			Double totalCost, BookingStatus bookingStatus,
-			@NotNull(message = "Number Of Person Cannot Be Null") @Min(value = 1, message = "Number Of Person Should Be Atleast 1") Integer noOfPersons,
-			@NotNull(message = "customer cannot be null") Customer customer,
-			@NotNull(message = "package cannot be null") Packages packages, @NotNull TicketDetails ticket) {
+			//@NotNull(message = "Number Of Person Cannot Be Null") 
+			//@Min(value = 1, message = "Number Of Person Should Be Atleast 1") 
+			Integer noOfPersons,
+			//@NotNull(message = "customer cannot be null")
+			Customer customer,
+			//@NotNull(message = "package cannot be null")
+			Packages packages, 
+			//@NotNull
+			TicketDetails ticket) {
 		super();
 		this.bookingId = bookingId;
 		this.description = description;

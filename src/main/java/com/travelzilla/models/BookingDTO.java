@@ -1,18 +1,18 @@
 package com.travelzilla.models;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
 
 public class BookingDTO {
 
-	@NotNull(message = "Package ID Cannot Be Null")
+	//@NotNull(message = "Package ID Cannot Be Null")
 	private Integer packageId;
 	
-	@NotNull(message = "Customer ID Cannot Be Null")
+	//@NotNull(message = "Customer ID Cannot Be Null")
 	private Integer customerId;
 	
-	@NotNull(message = "Number Of Person Cannot Be Null")
-	@Min(value = 1, message = "Number Of Person Should Be Atleast 1")
+	//@NotNull(message = "Number Of Person Cannot Be Null")
+	//@Min(value = 1, message = "Number Of Person Should Be Atleast 1")
 	private Integer noOfPersons;
 	public BookingDTO() {
 		// TODO Auto-generated constructor stub

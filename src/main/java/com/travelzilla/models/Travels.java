@@ -11,8 +11,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,24 +20,24 @@ public class Travels {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer travelId;
-	@NotNull(message = "travel Name Cannot Be Null!")
+	//@NotNull(message = "travel Name Cannot Be Null!")
 	private String travelName;
 	
-	@NotNull(message = "agent Name Cannot Be Null!")
+	//@NotNull(message = "agent Name Cannot Be Null!")
 	private String agentName;
 	
-	@NotNull(message = "address Cannot Be Null!")
+	//@NotNull(message = "address Cannot Be Null!")
 	@Embedded
 	private HotelAddress address;
-	@NotNull(message = "contact Cannot Be Null!")
+	//@NotNull(message = "contact Cannot Be Null!")
 	//@Size(min = 10, max = 10)
 	private String contact;
 	
-	@NotNull
+	//@NotNull
 	@Email
 	private String email;
 	
-	@NotNull
+	//@NotNull
 	private String travelPassword;
 	
 	

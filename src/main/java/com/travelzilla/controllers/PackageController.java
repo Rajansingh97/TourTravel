@@ -31,7 +31,7 @@ import com.travelzilla.services.PackageServices;
 import com.travelzilla.services.SessionServices;
 
 @RestController
-@RequestMapping("/package")
+@RequestMapping
 public class PackageController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class PackageController {
 	@Autowired
 	private SessionServices sessionServices;
 
-	@PostMapping("/addPackageByIds")
+	@PostMapping("/package/addPackageByIds")
 	public ResponseEntity<Packages> addPackage(@Valid @RequestBody PackageDTO pDto  , @RequestParam("sessionKey") String sessionKey) throws SessionException, HotelException, BusException, RouteException, AdminException {
 		Session session = sessionServices.getASessionByKey(sessionKey);
 		if(session.getUserType()==UserType.ADMIN) {
@@ -50,7 +50,7 @@ public class PackageController {
 		
 	}
 
-	@DeleteMapping("/deletePackage/{id}")
+	@DeleteMapping("/package/deletePackage/{id}")
 	public ResponseEntity<Packages> deletePackage(@PathVariable("id") Integer id , @RequestParam("sessionKey") String sessionKey) throws PackageException, AdminException, SessionException {
 		Session session = sessionServices.getASessionByKey(sessionKey);
 		if(session.getUserType()==UserType.ADMIN) {
@@ -59,7 +59,7 @@ public class PackageController {
 		throw new AdminException("Please login with the correct credentials");
 	}
 
-	@GetMapping("/searchPackageById/{id}")
+	@GetMapping("/package/searchPackageById/{id}")
 	public ResponseEntity<Packages> searchPackageById(@PathVariable("id") Integer id , @RequestParam("sessionKey") String sessionKey) throws PackageException, AdminException, SessionException {
 		Session session = sessionServices.getASessionByKey(sessionKey);
 		if(session.getUserType()==UserType.ADMIN) {
@@ -68,7 +68,7 @@ public class PackageController {
 		throw new AdminException("Please login with the correct credentials");
 	}
 
-	@GetMapping("/viewAllPackages")
+	@GetMapping("/package/viewAllPackages")
 	public ResponseEntity<List<Packages>> viewAllPackages(@RequestParam("sessionKey") String sessionKey) throws AdminException, SessionException {
 		Session session = sessionServices.getASessionByKey(sessionKey);
 		if(session.getUserType()==UserType.ADMIN) {
